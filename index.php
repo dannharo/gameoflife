@@ -10,14 +10,14 @@
 	<body>
 		<div id="tags"></div>
 		<div>
-		<button type="button">Start</button>
+		<button id="btn-start" type="button">Start</button>
 		</div>
 		<canvas id="grid" width="500" height="500" />
 		<script type="text/javascript">
 		$(document).ready(function(){    
 		var sizeInd = 5;
-		var canvas = document.getElementById('grid');
-		var ctx = canvas.getContext('2d');
+		var canvas = document.getElementById("grid");
+		var ctx = canvas.getContext("2d");
 
 		// how many cells fit on the canvas
 		var w = ~~ (canvas.width / sizeInd);
@@ -30,6 +30,16 @@
 		    state[y] = new Array(w);
 		}
 		var temp = state;
+		function changeState(){
+			var canvas = document.getElementById("grid");
+			var ctx = canvas.getContext("2d");
+			ctx.clearRect(0,0,500,500);
+			for (var y = 1; y < h; y++) {
+				for (var x = 1; x < w; x++) {
+					alert(state[y][x]);
+				}
+			}
+		}
 		// click event ro mark individuals
 		$(canvas).click(function(e) {
 		    function fill(color, cx, cy) {
@@ -63,6 +73,9 @@
 		    }
 		console.log(state);
 
+		});
+		$("#btn-start").click(function(e){
+			changeState();
 		});
 		});
 		</script>
